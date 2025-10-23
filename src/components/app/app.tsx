@@ -17,7 +17,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 const App = () => {
   const navigate = useNavigate();
-
   const handleModalClose = () => {
     navigate(-1);
   };
