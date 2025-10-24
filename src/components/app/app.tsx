@@ -14,6 +14,9 @@ import styles from './app.module.css';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from '../../services/store';
+import { useEffect } from 'react';
+import { getIngredients } from '../../services/slices/burgerIngredientsSlice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -22,6 +25,12 @@ const App = () => {
   const handleModalClose = () => {
     navigate(-1);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, []);
 
   return (
     <div className={styles.app}>
