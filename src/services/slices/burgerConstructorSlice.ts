@@ -26,9 +26,25 @@ export const burgerConstructorSlice = createSlice({
       state.ingredients = state.ingredients.filter(
         (item) => item._id !== action.payload
       );
+    },
+    moveUp: (state, action: PayloadAction<number>) => {
+      const currentElement = action.payload;
+      const upperElement = action.payload - 1;
+      [state.ingredients[currentElement], state.ingredients[upperElement]] = [
+        state.ingredients[upperElement],
+        state.ingredients[currentElement]
+      ];
+    },
+    moveDown: (state, action: PayloadAction<number>) => {
+      const currentElement = action.payload;
+      const downElement = action.payload + 1;
+      [state.ingredients[currentElement], state.ingredients[downElement]] = [
+        state.ingredients[downElement],
+        state.ingredients[currentElement]
+      ];
     }
   }
 });
 
-export const { addIngredient, removeIngredient } =
+export const { addIngredient, removeIngredient, moveUp, moveDown } =
   burgerConstructorSlice.actions;
