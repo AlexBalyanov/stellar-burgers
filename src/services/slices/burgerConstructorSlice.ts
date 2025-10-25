@@ -3,10 +3,12 @@ import { TIngredient } from '@utils-types';
 
 type TConstructorState = {
   ingredients: TIngredient[];
+  bun: TIngredient | null;
 };
 
 const initialState: TConstructorState = {
-  ingredients: []
+  ingredients: [],
+  bun: null
 };
 
 export const burgerConstructorSlice = createSlice({
@@ -14,10 +16,16 @@ export const burgerConstructorSlice = createSlice({
   initialState,
   reducers: {
     addIngredient: (state, action: PayloadAction<TIngredient>) => {
-      state.ingredients = [...state.ingredients, action.payload];
+      if (action.payload.type === 'bun') {
+        state.bun = action.payload;
+      } else {
+        state.ingredients = [...state.ingredients, action.payload];
+      }
     },
     removeIngredient: (state, action: PayloadAction<string>) => {
-      state.ingredients.filter((item) => item._id !== action.payload);
+      state.ingredients = state.ingredients.filter(
+        (item) => item._id !== action.payload
+      );
     }
   }
 });

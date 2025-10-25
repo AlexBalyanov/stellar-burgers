@@ -11,11 +11,10 @@ export const BurgerConstructor: FC = () => {
     ...item,
     id: item._id
   }));
+  const bun = useSelector((state) => state.burgerConstructor.bun);
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const constructorItems = {
-    bun: {
-      price: 0
-    },
+    bun: bun,
     ingredients: constructorIngredientsWithId
   };
 
