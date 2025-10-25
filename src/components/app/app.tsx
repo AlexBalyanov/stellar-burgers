@@ -19,14 +19,13 @@ import { useEffect } from 'react';
 import { getIngredients } from '../../services/slices/burgerIngredientsSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const backgroundLocation = location.state?.background;
   const handleModalClose = () => {
     navigate(-1);
   };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getIngredients());
