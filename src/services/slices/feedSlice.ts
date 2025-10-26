@@ -34,7 +34,8 @@ export const feedSlice = createSlice({
       console.log(action.error.message);
     });
     builder.addCase(getFeed.fulfilled, (_, action) => ({
-      ...action.payload
+      ...action.payload,
+      isLoading: false
     }));
   }
 });
