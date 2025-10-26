@@ -7,10 +7,12 @@ import {
 } from 'react-redux';
 import { burgerIngredientsSlice } from './slices/burgerIngredientsSlice';
 import { burgerConstructorSlice } from './slices/burgerConstructorSlice';
+import { feedSlice } from './slices/feedSlice';
 
 const rootReducer = combineSlices(
   burgerIngredientsSlice,
-  burgerConstructorSlice
+  burgerConstructorSlice,
+  feedSlice
 );
 
 const store = configureStore({
