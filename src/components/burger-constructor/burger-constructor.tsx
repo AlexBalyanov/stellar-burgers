@@ -7,15 +7,11 @@ export const BurgerConstructor: FC = () => {
   const constructorIngredients = useSelector(
     (state) => state.burgerConstructor.ingredients
   );
-  const constructorIngredientsWithId = constructorIngredients.map((item) => ({
-    ...item,
-    id: item._id
-  }));
   const bun = useSelector((state) => state.burgerConstructor.bun);
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const constructorItems = {
     bun: bun,
-    ingredients: constructorIngredientsWithId
+    ingredients: constructorIngredients
   };
 
   const orderRequest = false;
