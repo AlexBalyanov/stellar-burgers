@@ -6,7 +6,7 @@ type userState = {
   refreshToken: string;
   accessToken: string;
   user: TUser | null;
-  isSuccess: boolean;
+  isRegisterSuccess: boolean;
   errorText: string | undefined;
 };
 
@@ -14,7 +14,7 @@ const initialState: userState = {
   refreshToken: '',
   accessToken: '',
   user: null,
-  isSuccess: false,
+  isRegisterSuccess: false,
   errorText: ''
 };
 
@@ -29,16 +29,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
-      state.isSuccess = false;
+      state.isRegisterSuccess = false;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
-      state.isSuccess = false;
+      state.isRegisterSuccess = false;
       state.errorText = action.error.message;
       console.log(action.error.message);
     });
     builder.addCase(registerUser.fulfilled, (_, action) => ({
       ...action.payload,
-      isSuccess: true,
+      isRegisterSuccess: true,
       errorText: ''
     }));
   }
