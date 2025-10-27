@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import { getIngredients } from '../../services/slices/burgerIngredientsSlice';
 import { getFeed } from '../../services/slices/feedSlice';
 import { Protected } from '../Protected/Protected';
+import { checkUserAuth } from '../../services/slices/userSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getFeed());
+    dispatch(checkUserAuth());
   }, []);
 
   return (

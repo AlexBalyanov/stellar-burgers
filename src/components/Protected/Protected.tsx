@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from '../../services/store';
 
 type ProtectedProps = {
   onlyNoAuth: boolean;
@@ -10,8 +11,12 @@ export const Protected = ({
   component,
   onlyNoAuth
 }: ProtectedProps): React.JSX.Element => {
-  if (component && onlyNoAuth) {
-    return <Navigate to='/feed' />;
+  const user = useSelector((state) => state.user.user);
+  const isAuthChecked = useSelector((state) => state.user.isAuthChecked);
+
+  if (isAuthChecked && !user) {
+    return <Navigate to='/login' />;
   }
+
   return component;
 };
