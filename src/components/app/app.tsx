@@ -18,6 +18,7 @@ import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/slices/burgerIngredientsSlice';
 import { getFeed } from '../../services/slices/feedSlice';
+import { Protected } from '../Protected/Protected';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,10 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route
+          path='/profile'
+          element={<Protected onlyNoAuth component={<Profile />} />}
+        />
         <Route path='/profile/orders' element={<ProfileOrders />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
         <Route path='*' element={<NotFound404 />} />
