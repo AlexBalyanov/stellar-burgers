@@ -1,20 +1,25 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from '../../services/store';
+import { Preloader } from '@ui';
 
 type ProtectedProps = {
-  onlyNoAuth: boolean;
+  onlyUnAuth: boolean;
   component: React.JSX.Element;
 };
 
 export const Protected = ({
   component,
-  onlyNoAuth
+  onlyUnAuth
 }: ProtectedProps): React.JSX.Element => {
   const user = useSelector((state) => state.user.user);
   const isAuthChecked = useSelector((state) => state.user.isAuthChecked);
 
-  if (isAuthChecked && !user) {
+  if (!isAuthChecked) {
+    return <Preloader />;
+  }
+
+  if (onlyUnAuth && !user) {
     return <Navigate to='/login' />;
   }
 

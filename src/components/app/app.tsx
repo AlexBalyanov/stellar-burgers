@@ -49,7 +49,7 @@ const App = () => {
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route
           path='/profile'
-          element={<Protected onlyNoAuth component={<Profile />} />}
+          element={<Protected onlyUnAuth component={<Profile />} />}
         />
         <Route path='/profile/orders' element={<ProfileOrders />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
