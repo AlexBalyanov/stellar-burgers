@@ -1,20 +1,24 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TUser } from '@utils-types';
+import { TOrder, TUser } from '@utils-types';
 import {
+  getOrdersApi,
   getUserApi,
   loginUserApi,
   registerUserApi,
   TLoginData,
-  TRegisterData
+  TRegisterData,
+  updateUserApi
 } from '@api';
-import { getCookie, setCookie } from '../../utils/cookie';
+import { setCookie } from '../../utils/cookie';
 
 type TUserState = {
   refreshToken: string;
   accessToken: string;
   user: TUser | null;
+  userOrders: TOrder[];
   isRegisterSuccess: boolean;
   isLoginSuccess: boolean;
+  isUpdateSuccess: boolean;
   isAuthChecked: boolean;
   errorText: string | undefined;
 };
@@ -23,8 +27,10 @@ const initialState: TUserState = {
   refreshToken: '',
   accessToken: '',
   user: null,
+  userOrders: [],
   isRegisterSuccess: false,
   isLoginSuccess: false,
+  isUpdateSuccess: false,
   isAuthChecked: false,
   errorText: ''
 };
@@ -47,6 +53,16 @@ export const loginUser = createAsyncThunk(
     setCookie('accessToken', res.accessToken);
     return res;
   }
+);
+
+export const updateUser = createAsyncThunk(
+  'user/update',
+  async (userData: Partial<TRegisterData>) => await updateUserApi(userData)
+);
+
+export const getUserOrders = createAsyncThunk(
+  'user/getOrders',
+  async () => await getOrdersApi()
 );
 
 export const checkUserAuth = createAsyncThunk(
@@ -102,6 +118,25 @@ export const userSlice = createSlice({
       isLoginSuccess: true,
       errorText: ''
     }));
+
+    builder.addCase(updateUser.pending, (state) => {
+      state.isUpdateSuccess = false;
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.isUpdateSuccess = false;
+      console.log(action.error.message);
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.isUpdateSuccess = true;
+      state.user = action.payload.user;
+    });
+
+    builder.addCase(getUserOrders.rejected, (_, action) => {
+      console.log(action.error.message);
+    });
+    builder.addCase(getUserOrders.fulfilled, (state, action) => {
+      state.userOrders = action.payload;
+    });
   }
 });
 
