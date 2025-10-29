@@ -14,9 +14,5 @@ export const ProfileOrders: FC = () => {
     dispatch(getUserOrders());
   }, []);
 
-  if (!orders.length) {
-    return <Preloader />;
-  }
-
   return <ProfileOrdersUI orders={orders} />;
 };

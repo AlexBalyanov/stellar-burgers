@@ -4,12 +4,13 @@ import {
   getOrdersApi,
   getUserApi,
   loginUserApi,
+  logoutApi,
   registerUserApi,
   TLoginData,
   TRegisterData,
   updateUserApi
 } from '@api';
-import { setCookie } from '../../utils/cookie';
+import { deleteCookie, setCookie } from '../../utils/cookie';
 
 type TUserState = {
   refreshToken: string;
@@ -63,6 +64,11 @@ export const updateUser = createAsyncThunk(
 export const getUserOrders = createAsyncThunk(
   'user/getOrders',
   async () => await getOrdersApi()
+);
+
+export const userLogout = createAsyncThunk(
+  'user/logout',
+  async () => await logoutApi()
 );
 
 export const checkUserAuth = createAsyncThunk(
@@ -136,6 +142,15 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUserOrders.fulfilled, (state, action) => {
       state.userOrders = action.payload;
+    });
+
+    builder.addCase(userLogout.rejected, (_, action) => {
+      console.log(action.error.message);
+    });
+    builder.addCase(userLogout.fulfilled, () => {
+      localStorage.removeItem('refreshToken');
+      deleteCookie('accessToken');
+      return { ...initialState, isAuthChecked: true };
     });
   }
 });

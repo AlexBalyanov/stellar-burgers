@@ -19,8 +19,12 @@ export const Protected = ({
     return <Preloader />;
   }
 
-  if (onlyUnAuth && !user) {
-    return <Navigate to='/login' />;
+  if (!onlyUnAuth && !user) {
+    return <Navigate to='/login' replace />;
+  }
+
+  if (onlyUnAuth && user) {
+    return <Navigate to='/profile' replace />;
   }
 
   return component;

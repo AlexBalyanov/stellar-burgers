@@ -43,15 +43,32 @@ const App = () => {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route
+          path='/login'
+          element={<Protected onlyUnAuth component={<Login />} />}
+        />
+        <Route
+          path='/register'
+          element={<Protected onlyUnAuth component={<Register />} />}
+        />
+        <Route
+          path='/forgot-password'
+          element={<Protected onlyUnAuth component={<ForgotPassword />} />}
+        />
+        <Route
+          path='/reset-password'
+          element={<Protected onlyUnAuth component={<ResetPassword />} />}
+        />
         <Route
           path='/profile'
-          element={<Protected onlyUnAuth component={<Profile />} />}
+          element={<Protected onlyUnAuth={false} component={<Profile />} />}
         />
-        <Route path='/profile/orders' element={<ProfileOrders />} />
+        <Route
+          path='/profile/orders'
+          element={
+            <Protected onlyUnAuth={false} component={<ProfileOrders />} />
+          }
+        />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
         <Route path='*' element={<NotFound404 />} />
       </Routes>
