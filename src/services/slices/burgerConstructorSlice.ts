@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, PrepareAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 
 type TConstructorState = {
@@ -48,9 +48,15 @@ export const burgerConstructorSlice = createSlice({
         state.ingredients[downElement],
         state.ingredients[currentElement]
       ];
-    }
+    },
+    clearConstructor: () => initialState
   }
 });
 
-export const { addIngredient, removeIngredient, moveUp, moveDown } =
-  burgerConstructorSlice.actions;
+export const {
+  addIngredient,
+  removeIngredient,
+  moveUp,
+  moveDown,
+  clearConstructor
+} = burgerConstructorSlice.actions;

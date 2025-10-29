@@ -21,19 +21,18 @@ export const orderBurgerSlice = createSlice({
   name: 'orderBurger',
   initialState,
   reducers: {
-    clearOrder: (state) => {
-      state = initialState;
-    }
+    clearOrder: () => initialState
   },
   extraReducers: (builder) => {
     builder.addCase(orderBurger.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(orderBurger.rejected, (stat, action) => {
-      stat.isLoading = false;
+    builder.addCase(orderBurger.rejected, (state, action) => {
+      state.isLoading = false;
       console.log(action.error.message);
     });
     builder.addCase(orderBurger.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.orderData = action.payload.order;
     });
   }

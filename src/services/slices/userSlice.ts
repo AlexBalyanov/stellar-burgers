@@ -51,14 +51,14 @@ export const loginUser = createAsyncThunk(
 
 export const checkUserAuth = createAsyncThunk(
   'user/checkUserAuth',
-  async (_, { dispatch }) =>
-    await getUserApi()
-      .then((res) => {
-        dispatch(setUser(res.user));
-      })
-      .finally(() => {
-        dispatch(setIsAuthChecked(true));
-      })
+  async (_, { dispatch }) => {
+    try {
+      const res = await getUserApi();
+      dispatch(setUser(res.user));
+    } finally {
+      dispatch(setIsAuthChecked(true));
+    }
+  }
 );
 
 export const userSlice = createSlice({
