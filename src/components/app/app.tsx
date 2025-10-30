@@ -69,6 +69,7 @@ const App = () => {
             <Protected onlyUnAuth={false} component={<ProfileOrders />} />
           }
         />
+        <Route path='/profile/orders/:number' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
         <Route path='*' element={<NotFound404 />} />
       </Routes>

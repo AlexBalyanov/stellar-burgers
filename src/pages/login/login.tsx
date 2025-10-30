@@ -10,25 +10,21 @@ export const Login: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const errorText = useSelector((state) => state.user.errorText);
-  const isLoginsSuccess = useSelector((state) => state.user.isLoginSuccess);
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(
-      loginUser({
-        email,
-        password
-      })
-    );
-  };
-
-  useEffect(() => {
-    if (isLoginsSuccess) {
-      setEmail('');
-      setPassword('');
+    try {
+      await dispatch(
+        loginUser({
+          email,
+          password
+        })
+      );
       navigate('/');
+    } catch (err) {
+      console.log(err);
     }
-  }, [isLoginsSuccess]);
+  };
 
   return (
     <LoginUI
