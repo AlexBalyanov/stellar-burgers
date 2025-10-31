@@ -6,12 +6,14 @@ type TOrderBurgerState = {
   isLoading: boolean;
   orderData: TOrder | null;
   orderByNumber: TOrder | null;
+  isOrderSuccess: boolean;
 };
 
 const initialState: TOrderBurgerState = {
   isLoading: false,
   orderData: null,
-  orderByNumber: null
+  orderByNumber: null,
+  isOrderSuccess: false
 };
 
 export const orderBurger = createAsyncThunk(
@@ -40,6 +42,7 @@ export const orderBurgerSlice = createSlice({
     });
     builder.addCase(orderBurger.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.isOrderSuccess = true;
       state.orderData = action.payload.order;
     });
 

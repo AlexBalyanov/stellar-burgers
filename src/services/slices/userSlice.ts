@@ -66,10 +66,12 @@ export const getUserOrders = createAsyncThunk(
   async () => await getOrdersApi()
 );
 
-export const userLogout = createAsyncThunk(
-  'user/logout',
-  async () => await logoutApi()
-);
+export const userLogout = createAsyncThunk('user/logout', async () => {
+  const res = await logoutApi();
+  localStorage.removeItem('refreshToken');
+  deleteCookie('accessToken');
+  return res;
+});
 
 export const checkUserAuth = createAsyncThunk(
   'user/checkUserAuth',
@@ -147,11 +149,10 @@ export const userSlice = createSlice({
     builder.addCase(userLogout.rejected, (_, action) => {
       console.log(action.error.message);
     });
-    builder.addCase(userLogout.fulfilled, () => {
-      localStorage.removeItem('refreshToken');
-      deleteCookie('accessToken');
-      return { ...initialState, isAuthChecked: true };
-    });
+    builder.addCase(userLogout.fulfilled, () => ({
+      ...initialState,
+      isAuthChecked: true
+    }));
   }
 });
 
