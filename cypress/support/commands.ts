@@ -42,4 +42,5 @@ Cypress.Commands.add('prepareData', () => {
   cy.intercept('GET', '**/auth/user', { fixture: 'user.json' });
   cy.intercept('GET', '**/api/orders/all', { fixture: 'feed.json' });
   cy.intercept('GET', '**/api/orders', { fixture: 'feed.json' });
+  cy.intercept('POST', '**/api/orders', { fixture: 'order.json' });
 });

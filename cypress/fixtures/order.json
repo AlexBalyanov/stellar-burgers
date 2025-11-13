@@ -1,6 +1,6 @@
 {
   "success": true,
-  "name": "Био-марсианский spicy бургер",
+  "name": "Моковый spicy бургер",
   "order": {
     "ingredients": [
       {
@@ -40,10 +40,10 @@
       "updatedAt": "2025-10-29T13:01:32.797Z"
     },
     "status": "done",
-    "name": "Био-марсианский spicy бургер",
+    "name": "Моковый spicy бургер",
     "createdAt": "2025-11-13T11:52:03.203Z",
     "updatedAt": "2025-11-13T11:52:03.382Z",
-    "number": 94135,
-    "price": 514
+    "number": 666,
+    "price": 666
   }
 }
