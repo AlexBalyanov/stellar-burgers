@@ -1,7 +1,9 @@
 import {
   addIngredient,
-  burgerConstructorSlice, clearConstructor,
-  initialState, moveDown,
+  burgerConstructorSlice,
+  clearConstructor,
+  initialState,
+  moveDown,
   removeIngredient
 } from '../services/slices/burgerConstructorSlice';
 
