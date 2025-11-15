@@ -27,13 +27,26 @@ const mockDataUpdatedUser = {
 };
 
 const mockDataOrders = {
-  _id: '6900de6d74993f001b5bbb65',
-  status: 'done',
-  name: 'Моковый люминесцентный бургер',
-  createdAt: '2025-10-28T15:17:01.813Z',
-  updatedAt: '2025-10-28T15:17:02.925Z',
-  number: 666,
-  ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
+  userOrders: [
+    {
+      _id: '6900de6d74993f001b5bbb65',
+      status: 'done',
+      name: 'Моковый люминесцентный бургер',
+      createdAt: '2025-10-28T15:17:01.813Z',
+      updatedAt: '2025-10-28T15:17:02.925Z',
+      number: 666,
+      ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
+    },
+    {
+      _id: '6900de6d74993f02222222',
+      status: 'done',
+      name: 'Моковый люминесцентный бургер',
+      createdAt: '2025-10-28T15:17:01.813Z',
+      updatedAt: '2025-10-28T15:17:02.925Z',
+      number: 777,
+      ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
+    }
+  ]
 };
 
 describe('Проврка слайса пользователя', () => {
@@ -201,22 +214,33 @@ describe('Проврка слайса пользователя', () => {
   it('Получение заказов пользователя - успешно', () => {
     const action = {
       type: getUserOrders.fulfilled.type,
-      payload: mockDataOrders
+      payload: mockDataOrders.userOrders
     };
 
     const state = userSlice.reducer(initialState, action);
 
     expect(state).toEqual({
       ...initialState,
-      userOrders: {
-        _id: '6900de6d74993f001b5bbb65',
-        status: 'done',
-        name: 'Моковый люминесцентный бургер',
-        createdAt: '2025-10-28T15:17:01.813Z',
-        updatedAt: '2025-10-28T15:17:02.925Z',
-        number: 666,
-        ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
-      }
+      userOrders: [
+        {
+          _id: '6900de6d74993f001b5bbb65',
+          status: 'done',
+          name: 'Моковый люминесцентный бургер',
+          createdAt: '2025-10-28T15:17:01.813Z',
+          updatedAt: '2025-10-28T15:17:02.925Z',
+          number: 666,
+          ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
+        },
+        {
+          _id: '6900de6d74993f02222222',
+          status: 'done',
+          name: 'Моковый люминесцентный бургер',
+          createdAt: '2025-10-28T15:17:01.813Z',
+          updatedAt: '2025-10-28T15:17:02.925Z',
+          number: 777,
+          ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
+        }
+      ]
     });
   });
 
