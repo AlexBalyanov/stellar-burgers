@@ -1,4 +1,5 @@
 import {
+  clearOrder,
   getOrderByNumber,
   initialState,
   orderBurger,
@@ -115,5 +116,16 @@ describe('Проврка слайса оформления заказа', () => 
         ingredients: ['643d69a5c3f7b9001cfa093e', '643d69a5c3f7b9001cfa0941']
       }
     });
+  });
+
+  it('Очистка заказа', () => {
+    const action = {
+      type: clearOrder.type
+    };
+
+    const prevState = { ...initialState, orderData: mockData.order };
+    const state = orderBurgerSlice.reducer(prevState, action);
+
+    expect(state).toEqual(initialState);
   });
 });

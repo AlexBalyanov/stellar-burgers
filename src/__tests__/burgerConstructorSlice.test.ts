@@ -4,6 +4,7 @@ import {
   clearConstructor,
   initialState,
   moveDown,
+  moveUp,
   removeIngredient
 } from '../services/slices/burgerConstructorSlice';
 
@@ -134,7 +135,7 @@ describe('Проверка слайса конструктора', () => {
     expect(state).toEqual(initialState);
   });
 
-  it('Проверка переставления ингредиентов местами', () => {
+  it('Проверка переставления ингредиентов местами (moveDown)', () => {
     const action = {
       type: moveDown.type,
       payload: 0
@@ -148,6 +149,23 @@ describe('Проверка слайса конструктора', () => {
     expect(state).toEqual({
       ...initialState,
       ingredients: mockDataMoveDown.ingredients
+    });
+  });
+
+  it('Проверка переставления ингредиентов местами (moveUp)', () => {
+    const action = {
+      type: moveUp.type,
+      payload: 1
+    };
+    const prevState = {
+      ...initialState,
+      ingredients: mockDataMoveDown.ingredients
+    };
+    const state = burgerConstructorSlice.reducer(prevState, action);
+
+    expect(state).toEqual({
+      ...initialState,
+      ingredients: mockData.ingredients
     });
   });
 
