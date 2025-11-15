@@ -1,3 +1,5 @@
+import { dataSelectors } from '../support/constants';
+
 describe('Проверка работы модального окна', () => {
   beforeEach(() => {
     cy.prepareData();
@@ -5,7 +7,7 @@ describe('Проверка работы модального окна', () => {
   });
 
   it('Открытие и закрытие модального окна, проверка, что в нем есть содержимое карточки', () => {
-    cy.get('[data-testid="list-for-Булки"]')
+    cy.get(dataSelectors.bunsList)
       .find('li')
       .first()
       .then((element) => {
