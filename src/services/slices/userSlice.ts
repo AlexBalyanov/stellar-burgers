@@ -24,7 +24,7 @@ type TUserState = {
   errorText: string | undefined;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   refreshToken: '',
   accessToken: '',
   user: null,

@@ -9,7 +9,7 @@ type TOrderBurgerState = {
   isOrderSuccess: boolean;
 };
 
-const initialState: TOrderBurgerState = {
+export const initialState: TOrderBurgerState = {
   isLoading: false,
   orderData: null,
   orderByNumber: null,
