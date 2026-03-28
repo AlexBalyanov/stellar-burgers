@@ -2,6 +2,10 @@
 
 [Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design>)
 
+## Деплой проекта:
+
+https://stellar-burgers-dusky.vercel.app/
+
 ## Установка и запуск
 Для установки и запуска проекта необходимо выполнить команды
 
@@ -27,10 +31,6 @@ npm run build
 ```
 yarn build
 ```
-
-## Деплой проекта:
-
-https://stellar-burgers-dusky.vercel.app/
 
 ## Важно:
 
